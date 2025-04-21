@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technician Dashboard | Pyrogen Power Systems</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F3F4F6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .top-line { width: 100%; height: 38px; background-color: #0D253F; }
+        header {
+            background-color: #1E3A8A;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 2rem;
+        }
+        .navbar-container {
+            background-color: #0D253F;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 8px 0;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        nav a:hover { background-color: #87CEEB; }
+        nav a.active { background-color: #1E3A8A; color: #FFD700; }
+
+        .plant-banner {
+            width: 100%;
+            background-color: #1E3A8A;
+            color: #FFD700;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-top: 15px; /* Space after navbar */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .dashboard-container { padding: 30px 20px; }
+        .section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+        }
+        .section-title { font-weight: 600; font-size: 1.4rem; margin-bottom: 15px; text-align: center; }
+        .data-block {
+            background-color: #E3F2FD;
+            padding: 15px;
+            border-left: 6px solid #1E3A8A;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .link-section {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .link-btn {
+            background-color: #1E3A8A;
+            color: #FFD700;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        .link-btn:hover { background-color: #0D253F; }
+        .footer-bottom {
+            text-align: center;
+            background-color: #0D253F;
+            color: #fff;
+            padding: 10px 0;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-line"></div>
+
+    <header>Technician Dashboard | Pyrogen Power Systems</header>
+
+    <div class="navbar-container">
+        <nav>
+            <a href="Dashboard.html" class="active">Dashboard</a>
+            <a href="TechnicianUP.html">Update Power Data</a>
+            <a href="TechnicianRI.html">Report Issues</a>
+            <a href="TechnicianMMI.html">Manage Minor Fixes</a>
+            <a href="Homepage.html">Logout</a>
+        </nav>
+    </div>
+
+    <!-- Power Plant Name Banner -->
+    <div class="plant-banner" id="plantName">Baner Solar Plant</div>
+
+    <div class="dashboard-container">
+
+        <!-- Power Data Overview Section -->
+        <div class="section">
+            <div class="section-title">⚡ Power Data Overview (Today)</div>
+            <div class="data-block">
+                <strong>Power Generated:</strong> 5200 kW  
+            </div>
+            <div class="data-block">
+                <strong>Power Consumed:</strong> 4800 kW  
+            </div>
+        </div>
+
+        <!-- Recent Equipment Issues Section -->
+        <div class="section">
+            <div class="section-title">🛠️ Recent Equipment Issues</div>
+            <div class="data-block">
+                <strong>Transformer Issue:</strong> Voltage fluctuation detected  
+                <br> <strong>Status:</strong> In Progress  
+            </div>
+            <div class="data-block">
+                <strong>Capacitor Bank:</strong> Overheating detected  
+                <br> <strong>Status:</strong> Resolved  
+            </div>
+        </div>
+
+        <!-- Minor Fixes Log Section -->
+        <div class="section">
+            <div class="section-title">🔧 Recent Minor Fixes</div>
+            <div class="data-block">
+                <strong>CT Transformer:</strong> Replaced damaged wire (Fixed)  
+            </div>
+            <div class="data-block">
+                <strong>Battery Bank:</strong> Replaced corroded terminal connectors (Fixed)  
+            </div>
+        </div>
+
+        <!-- Quick Navigation Links Section -->
+        <div class="section">
+            <div class="section-title">🚀 Quick Actions</div>
+            <div class="link-section">
+                <a href="TechnicianUP.html" class="link-btn">➕ Update Power Data</a>
+                <a href="TechnicianRI.html" class="link-btn">❗ Report Issues</a>
+                <a href="TechnicianMMI.html" class="link-btn">🛠️ Manage Fixes</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2025 Pyrogen Power Systems | Technician Dashboard
+    </div>
+
+    <script>
+        // Dynamic Plant Name (Example: Fetched from server)
+        const plantData = {
+            id: 1,
+            name: "Baner Solar Plant",
+            type: "Electrical"
+        };
+
+        // Display the plant name dynamically
+        document.getElementById('plantName').textContent = plantData.name;
+    </script>
+</body>
+</html>

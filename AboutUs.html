@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Energy Supply Management</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+            background-color: #ECEFF1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content { flex: 1; overflow-y: auto; }
+
+        .top-line { width: 100%; height: 38px; background-color: #0D253F; }
+
+        nav {
+            background-color: #0D253F;
+            
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 8px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 15px;
+            border-radius: 5px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 100%;
+            height: 2px;
+            background-color: #FFD700;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #FFD700;
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        nav a.active {
+            color: #FFD700;
+        }
+
+        header {
+            background-color: #1E3A8A;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+            font-size: 2rem;
+        }
+
+        .section {
+            background-color: #fff;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 1000px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #1E3A8A;
+        }
+
+        .section p {
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .values {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .value-card {
+            background-color: #FFEB3B;
+            padding: 20px;
+            width: 200px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .value-card i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            background-color: #0D253F;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        .hero-section {
+            background-color: #1E3A8A;
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+        }
+
+        .hero-section p {
+            margin-top: 10px;
+            font-size: 1.2rem;
+        }
+
+        .btn-cta {
+            background-color: #FFD700;
+            color: #000;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .btn-cta:hover {
+            background-color: #FFB300;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="top-line"></div>
+
+        <header>Energy Supply Management Platform</header>
+
+        <nav>
+            <a href="homepage.html">Home</a>
+            <a href="ContactUs.html">Contact Us</a>
+            <a href="Help.html">Help</a>
+        </nav>
+        <br>
+        <br>
+        <section class="hero-section">
+            <h1>Empowering Connections, Energizing Growth</h1>
+            <p>We bridge the gap between power providers and businesses, ensuring efficient energy distribution with intelligent solutions.</p>
+            <button class="btn-cta">Get Started Today</button>
+        </section>
+
+        <section class="section">
+            <h2>Our Mission</h2>
+            <p>To simplify energy management by connecting businesses with reliable power suppliers while ensuring optimal energy utilization.</p>
+
+            <div class="values">
+                <div class="value-card">
+                    <i>🔌</i>
+                    <p>Reliable Power Supply</p>
+                </div>
+                <div class="value-card">
+                    <i>🔎</i>
+                    <p>Transparency in Transactions</p>
+                </div>
+                <div class="value-card">
+                    <i>⚡</i>
+                    <p>Smart Energy Management</p>
+                </div>
+                <div class="value-card">
+                    <i>🌱</i>
+                    <p>Sustainability & Eco-Friendly Solutions</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Our Vision</h2>
+            <p>To become a trusted leader in power generation, delivering reliable and sustainable energy solutions to businesses and communities, ensuring uninterrupted power supply for growth and development.</p>
+        </section>
+        
+
+        <section class="section">
+            <h2>How It Works</h2>
+            <p>Follow these simple steps to get started:</p>
+            <ul>
+                <li>1. Register as a provider or customer.</li>
+                <li>2. Search for available power plants.</li>
+                <li>3. Request power based on availability.</li>
+                <li>4. Track your supply status in real-time.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Why Choose Us?</h2>
+            <p>Our platform stands out with:</p>
+            <ul>
+                <li>✅ Fast Search Algorithm (BST/AVL Tree Integration)</li>
+                <li>✅ Accurate Power Suggestions (Using Graph Algorithms)</li>
+                <li>✅ Secure Transactions</li>
+                <li>✅ Real-Time Power Availability</li>
+            </ul>
+        </section>
+    </div>
+
+    <div class="footer-bottom">
+        © 2025 PyroGen Power Systems | Privacy | Terms of Use
+    </div>
+</body>
+</html>

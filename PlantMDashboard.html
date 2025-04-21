@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Manager Dashboard | Pyrogen Power Systems</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F3F4F6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .top-line { width: 100%; height: 38px; background-color: #0D253F; }
+        header {
+            background-color: #1E3A8A;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 2rem;
+        }
+        .navbar-container {
+            background-color: #0D253F;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 8px 0;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        nav a:hover { background-color: #87CEEB; }
+        nav a.active { background-color: #1E3A8A; color: #FFD700; }
+        .plant-banner {
+            width: 100%;
+            background-color: #1E3A8A;
+            color: #FFD700;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-top: 15px; /* Space after navbar */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .dashboard-container { padding: 30px 20px; }
+        .section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+        }
+        .section-title { font-weight: 600; font-size: 1.4rem; margin-bottom: 15px; text-align: center; }
+        .request-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        .request-card {
+            background: #E3F2FD;
+            padding: 15px;
+            border-left: 6px solid #1E3A8A;
+            border-radius: 10px;
+            text-align: left;
+        }
+        .footer-bottom {
+            text-align: center;
+            background-color: #0D253F;
+            color: #fff;
+            padding: 10px 0;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-line"></div>
+
+    <header>Plant Manager Dashboard | Pyrogen Power Systems</header>
+
+    <div class="navbar-container">
+        <nav>
+            <a href="PowerAvailability.html" class="active">Dashboard</a>
+            <a href="PlantMReport.html">Report Technical Issues</a>
+            <a href="Homepage.html">Logout</a>
+        </nav>
+    </div>
+
+    <div class="plant-banner" id="plantName">Baner Solar Plant</div>
+
+    <div class="dashboard-container">
+
+        <!-- Real-time Power Availability Section -->
+        <div class="section">
+            <div class="section-title">⚡ Real-time Power Availability</div>
+            <p>Current Power Output: <strong>3.2 MW</strong></p>
+            <p>Voltage Level: <strong>11 kV</strong></p>
+            <p>Frequency: <strong>50 Hz</strong></p>
+        </div>
+
+        <!-- Maintenance Schedule Section -->
+        <div class="section">
+            <div class="section-title">🛠️ Maintenance Schedule</div>
+            <ul>
+                <li>Transformer Oil Check - <strong>Every 6 Months</strong></li>
+                <li>Capacitor Bank Inspection - <strong>Quarterly</strong></li>
+                <li>CT (Current Transformer) Testing - <strong>Annually</strong></li>
+                <li>PT (Potential Transformer) Testing - <strong>Annually</strong></li>
+                <li>Busbar Cleaning and Tightening - <strong>Every 3 Months</strong></li>
+                <li>Battery Bank Health Check - <strong>Monthly</strong></li>
+            </ul>
+        </div>
+
+        <!-- Technical Issue Reporting Section -->
+        <div class="section">
+            <div class="section-title">🚨 Report Technical Issues</div>
+            <p>If you encounter technical issues, please contact Admin immediately:</p>
+            <p><strong>Admin Contact:</strong> admin@pyrogenpower.com</p>
+        </div>
+    </div>
+
+    <!-- Ongoing Customer Requests Section -->
+    <div class="section">
+        <div class="section-title">📋 Ongoing Customer Requests (Linked to Maintenance)</div>
+        <div class="request-grid">
+            <div class="request-card">
+                <h2>Rohan Desai</h2>
+                <p><strong>Issue:</strong> Transformer overheating detected.</p>
+                <p><strong>Status:</strong> Scheduled for Inspection - <strong>15th March</strong></p>
+            </div>
+            <div class="request-card">
+                <h2>Sneha Patil</h2>
+                <p><strong>Issue:</strong> Capacitor bank showing abnormal voltage levels.</p>
+                <p><strong>Status:</strong> Maintenance Scheduled - <strong>20th March</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2025 Pyrogen Power Systems | Plant Manager Dashboard
+    </div>
+
+    <script>
+        // Dynamic Plant Name (Example: Fetched from server)
+        const plantData = {
+            id: 1,
+            name: "Baner Solar Plant",
+            type: "Electrical"
+        };
+
+        // Display the plant name dynamically
+        document.getElementById('plantName').textContent = plantData.name;
+    </script>
+</body>
+</html>

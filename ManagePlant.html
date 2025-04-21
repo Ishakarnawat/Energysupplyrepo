@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Plants | Pyrogen Power Systems</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F3F4F6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .top-line { 
+            width: 100%; 
+            height: 38px; 
+            background-color: #0D253F; 
+        }
+
+        header {
+            background-color: #1E3A8A;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 2rem;
+        }
+
+        nav {
+            background-color: #0D253F;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 8px 0;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #87CEEB;
+        }
+
+        nav a.active {
+            background-color: #1E3A8A;
+            color: #FFD700;
+        }
+
+        .dashboard-container {
+            padding: 30px 20px;
+        }
+
+        .section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-weight: 600;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .powerplant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .plant-card {
+            background: #E3F2FD;
+            padding: 15px;
+            border-left: 6px solid #1E3A8A;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .quick-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .action-btn {
+            background-color: #1E3A8A;
+            color: #FFD700;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background-color: #FFD700;
+            color: #1E3A8A;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            background-color: #0D253F;
+            color: #fff;
+            padding: 10px 0;
+            margin-top: 30px;
+        }
+
+        .input-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #E3F2FD;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .input-section input {
+            padding: 8px;
+            border: 2px solid #1E3A8A;
+            border-radius: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-line"></div>
+
+    <header>Manage Plants | Pyrogen Power Systems</header>
+
+    <nav>
+        <a href="AdminDashboard.html">Dashboard</a>
+        <a href="ManagePlant.html">Manage Plants</a>
+        <a href="AdminPowerPlantNotification.html">Manager Notifications</a>
+        <a href="Adminrequest.html">Customer Requests</a>
+        <a href="AdminPowerPlantNotification.html">Notifications</a>
+        <a href="Homepage.html">Logout</a>
+    </nav>
+
+    <div class="dashboard-container">
+
+        <!-- Plant Details Section -->
+        <div class="section">
+            <div class="section-title">🌿 Power Plants in Pune City</div>
+            <div class="input-section">
+                <input type="text" id="plantName" placeholder="Plant Name">
+                <input type="text" id="plantType" placeholder="Plant Type">
+                <input type="text" id="plantLocation" placeholder="Location">
+                <input type="text" id="plantCapacity" placeholder="Capacity (MW)">
+                <button class="action-btn" onclick="addPlant()">➕ Add Plant</button>
+                <button class="action-btn" onclick="updatePlant()">🔄 Update Plant Details</button>
+            </div>
+
+            <div class="powerplant-grid" id="plantList">
+                <!-- Plants will be dynamically generated here -->
+            </div>
+        </div>
+
+        <!-- Quick Actions Section -->
+        <div class="section">
+            <div class="section-title">⚡ Quick Actions</div>
+            <div class="quick-actions">
+                <button class="action-btn" onclick="removePlant()">❌ Remove Plant</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2025 Pyrogen Power Systems | Manage Plants
+    </div>
+
+    <script>
+        let plants = [
+            { name: "Baner Solar Plant", type: "Solar Power", location: "Baner", capacity: "25 MW" },
+            { name: "Kothrud Solar Park", type: "Solar Power", location: "Kothrud", capacity: "18 MW" },
+            { name: "Viman Nagar Wind Farm", type: "Wind Power", location: "Viman Nagar", capacity: "22 MW" },
+            { name: "Wakad Biomass Plant", type: "Biomass Energy", location: "Wakad", capacity: "28 MW" },
+            { name: "Aundh Waste-to-Energy Plant", type: "Waste-to-Energy", location: "Aundh", capacity: "20 MW" }
+        ];
+
+        function displayPlants() {
+            const plantList = document.getElementById('plantList');
+            plantList.innerHTML = '';
+
+            plants.forEach((plant) => {
+                const plantCard = `
+                    <div class="plant-card">
+                        <h2>${plant.name}</h2>
+                        <p><strong>Type:</strong> ${plant.type}</p>
+                        <p><strong>Location:</strong> ${plant.location}</p>
+                        <p><strong>Capacity:</strong> ${plant.capacity}</p>
+                    </div>
+                `;
+                plantList.innerHTML += plantCard;
+            });
+        }
+
+        function addPlant() {
+            const name = document.getElementById('plantName').value;
+            const type = document.getElementById('plantType').value;
+            const location = document.getElementById('plantLocation').value;
+            const capacity = document.getElementById('plantCapacity').value;
+
+            plants.push({ name, type, location, capacity });
+            displayPlants();
+            alert(`✅ ${name} added successfully!`);
+        }
+
+        function updatePlant() {
+            const name = document.getElementById('plantName').value.trim();
+            const type = document.getElementById('plantType').value.trim();
+            const location = document.getElementById('plantLocation').value.trim();
+            const capacity = document.getElementById('plantCapacity').value.trim();
+
+            const plantIndex = plants.findIndex(plant => plant.name.toLowerCase() === name.toLowerCase());
+
+            if (plantIndex !== -1) {
+                if (type) plants[plantIndex].type = type;
+                if (location) plants[plantIndex].location = location;
+                if (capacity) plants[plantIndex].capacity = capacity;
+
+                displayPlants();
+                alert(`✅ ${name} updated successfully!`);
+            } else {
+                alert(`❌ Plant "${name}" not found.`);
+            }
+        }
+
+        function removePlant() {
+            const plantToRemove = prompt("Enter the Plant Name to remove:");
+            plants = plants.filter(plant => plant.name.toLowerCase() !== plantToRemove.toLowerCase());
+            displayPlants();
+            alert(`❌ ${plantToRemove} removed successfully!`);
+        }
+
+        window.onload = displayPlants;
+    </script>
+</body>
+</html>

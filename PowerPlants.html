@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Plant Details</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ECEFF1;
+            color: #1E3A8A;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .content { flex: 1; overflow-y: auto; }
+
+        .top-line { width: 100%; height: 38px; background-color: #0D253F; }
+
+        header {
+            background-color: #1E3A8A;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 2rem;
+        }
+
+        nav {
+            background-color: #0D253F;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 8px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 15px;
+            border-radius: 5px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover { color: #FFD700; }
+
+        .section {
+            background-color: #fff;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 1100px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .section h1 {
+            text-align: center;
+            color: #1E3A8A;
+            margin-bottom: 20px;
+        }
+
+        .powerplant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .plant-card {
+            background: #ffffff;
+            border-left: 8px solid #00BCD4;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .plant-card:hover {
+            transform: scale(1.05);
+            background-color: #E3F2FD;
+        }
+
+        .plant-card h2 {
+            color: #1E3A8A;
+            margin-bottom: 8px;
+        }
+
+        .plant-card p {
+            margin: 3px 0;
+            color: #546E7A;
+        }
+
+        .footer {
+            background-color: #0D253F;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="top-line"></div>
+
+        <header>Power Plant Details</header>
+
+        <nav>
+            <a href="homepage.html">Home</a>
+            <a href="AboutUs.html">About Us</a>
+            <a href="ContactUs.html">Contact Us</a>
+            <a href="Help.html">Help</a>
+        </nav>
+
+        <section class="section">
+            <h1>Power Plants in Pune City</h1>
+
+            <div class="powerplant-grid">
+                <div class="plant-card"><h2>Baner Solar Plant</h2><p><strong>Type:</strong> Solar Power</p><p><strong>Location:</strong> Baner</p><p><strong>Capacity:</strong> 25 MW</p></div>
+                <div class="plant-card"><h2>Kothrud Solar Park</h2><p><strong>Type:</strong> Solar Power</p><p><strong>Location:</strong> Kothrud</p><p><strong>Capacity:</strong> 18 MW</p></div>
+                <div class="plant-card"><h2>Viman Nagar Wind Farm</h2><p><strong>Type:</strong> Wind Power</p><p><strong>Location:</strong> Viman Nagar</p><p><strong>Capacity:</strong> 22 MW</p></div>
+                <div class="plant-card"><h2>Wakad Biomass Plant</h2><p><strong>Type:</strong> Biomass Energy</p><p><strong>Location:</strong> Wakad</p><p><strong>Capacity:</strong> 28 MW</p></div>
+                <div class="plant-card"><h2>Aundh Waste-to-Energy Plant</h2><p><strong>Type:</strong> Waste-to-Energy</p><p><strong>Location:</strong> Aundh</p><p><strong>Capacity:</strong> 20 MW</p></div>
+                <div class="plant-card"><h2>Kharadi Solar Power Station</h2><p><strong>Type:</strong> Solar Power</p><p><strong>Location:</strong> Kharadi</p><p><strong>Capacity:</strong> 30 MW</p></div>
+                <div class="plant-card"><h2>Shivajinagar Gas Plant</h2><p><strong>Type:</strong> Natural Gas Power</p><p><strong>Location:</strong> Shivajinagar</p><p><strong>Capacity:</strong> 24 MW</p></div>
+                <div class="plant-card"><h2>Hadapsar Solar Array</h2><p><strong>Type:</strong> Solar Power</p><p><strong>Location:</strong> Hadapsar</p><p><strong>Capacity:</strong> 26 MW</p></div>
+                <div class="plant-card"><h2>Sinhagad Hydro Plant</h2><p><strong>Type:</strong> Hydropower</p><p><strong>Location:</strong> Sinhagad</p><p><strong>Capacity:</strong> 27 MW</p></div>
+                <div class="plant-card"><h2>Bavdhan Geothermal Plant</h2><p><strong>Type:</strong> Geothermal Energy</p><p><strong>Location:</strong> Bavdhan</p><p><strong>Capacity:</strong> 21 MW</p></div>
+                <div class="plant-card"><h2>Pimpri Waste Energy Plant</h2><p><strong>Type:</strong> Waste-to-Energy</p><p><strong>Location:</strong> Pimpri</p><p><strong>Capacity:</strong> 19 MW</p></div>
+                <div class="plant-card"><h2>Deccan Thermal Plant</h2><p><strong>Type:</strong> Thermal Power</p><p><strong>Location:</strong> Deccan</p><p><strong>Capacity:</strong> 29 MW</p></div>
+                <div class="plant-card"><h2>Yerwada Biofuel Plant</h2><p><strong>Type:</strong> Biofuel Power</p><p><strong>Location:</strong> Yerwada</p><p><strong>Capacity:</strong> 23 MW</p></div>
+                <div class="plant-card"><h2>Swargate Wind Energy Center</h2><p><strong>Type:</strong> Wind Power</p><p><strong>Location:</strong> Swargate</p><p><strong>Capacity:</strong> 20 MW</p></div>
+                <div class="plant-card"><h2>Warje Solar Hub</h2><p><strong>Type:</strong> Solar Power</p><p><strong>Location:</strong> Warje</p><p><strong>Capacity:</strong> 17 MW</p></div>
+            </div>
+        </section>
+    </div>
+
+    <div class="footer">
+        © 2025 PyroGen Power Systems | Privacy | Terms of Use
+    </div>
+</body>
+</html>

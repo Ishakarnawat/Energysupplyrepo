@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Requests | Pyrogen Power Systems</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F3F4F6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .top-line { width: 100%; height: 38px; background-color: #0D253F; }
+        header {
+            background-color: #1E3A8A;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 2rem;
+        }
+        nav {
+            background-color: #0D253F;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 8px 0;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        nav a:hover { background-color: #87CEEB; }
+        nav a.active { background-color: #1E3A8A; color: #FFD700; }
+        .dashboard-container { padding: 30px 20px; }
+        .section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+        }
+        .section-title { font-weight: 600; font-size: 1.4rem; margin-bottom: 15px; text-align: center; }
+        .request-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        .request-card {
+            background: #E3F2FD;
+            padding: 15px;
+            border-left: 6px solid #1E3A8A;
+            border-radius: 10px;
+            text-align: left;
+        }
+        .request-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .approve-btn { background-color: #4CAF50; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+        .reject-btn { background-color: #F44336; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+        .onhold-btn { background-color: #FFA500; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+        .followup-btn { background-color: #1E90FF; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+        .footer-bottom { text-align: center; background-color: #0D253F; color: #fff; padding: 10px 0; margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <div class="top-line"></div>
+
+    <header>Customer Requests | Pyrogen Power Systems</header>
+
+    <nav>
+        <a href="AdminDashboard.html">Dashboard</a>
+        <a href="ManagePlant.html">Manage Plants</a>
+        <a href="AdminPowerPlantNotification.html">Manager Notifications</a>
+        <a href="Adminrequest.html">Customer Requests</a>
+        <a href="AdminPowerPlantNotification.html">Notifications</a>
+        <a href="Homepage.html">Logout</a>
+    </nav>
+
+    <div class="dashboard-container">
+
+        <!-- Pending Requests Section -->
+        <div class="section">
+            <div class="section-title">📩 Pending Customer Requests</div>
+            <div class="request-grid" id="pendingRequests"></div>
+        </div>
+
+        <!-- Approved Requests Section -->
+        <div class="section">
+            <div class="section-title">✅ Approved Requests</div>
+            <div class="request-grid" id="approvedRequests"></div>
+        </div>
+
+        <!-- Rejected Requests Section -->
+        <div class="section">
+            <div class="section-title">❌ Rejected Requests</div>
+            <div class="request-grid" id="rejectedRequests"></div>
+        </div>
+
+        <!-- On Hold Requests Section -->
+        <div class="section">
+            <div class="section-title">⏳ On Hold Requests</div>
+            <div class="request-grid" id="onHoldRequests"></div>
+        </div>
+
+        <!-- Follow-Up Requests Section -->
+        <div class="section">
+            <div class="section-title">🔍 Follow-Up Requests</div>
+            <div class="request-grid" id="followUpRequests"></div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2025 Pyrogen Power Systems | Customer Requests
+    </div>
+
+    <script>
+        let pendingRequests = [
+            { name: "Rahul Sharma", contact: "rahul.sharma@gmail.com", details: "Inquiry about solar panel installation." },
+            { name: "Priya Mehta", contact: "priya.mehta@gmail.com", details: "Request for biomass plant visit." },
+            { name: "Vikram Yadav", contact: "vikram.yadav@gmail.com", details: "Need assistance with energy billing issues." }
+        ];
+
+        let approvedRequests = [];
+        let rejectedRequests = [];
+        let onHoldRequests = [];
+        let followUpRequests = [];
+
+        function displayRequests() {
+            displayPendingRequests();
+            displayApprovedRequests();
+            displayRejectedRequests();
+            displayOnHoldRequests();
+            displayFollowUpRequests();
+        }
+
+        function displayPendingRequests() {
+            const pendingContainer = document.getElementById('pendingRequests');
+            pendingContainer.innerHTML = '';
+
+            pendingRequests.forEach((request, index) => {
+                const requestCard = `
+                    <div class="request-card">
+                        <h2>${request.name}</h2>
+                        <p><strong>Contact:</strong> ${request.contact}</p>
+                        <p><strong>Details:</strong> ${request.details}</p>
+                        <div class="request-actions">
+                            <button class="approve-btn" onclick="approveRequest(${index})">Approve</button>
+                            <button class="reject-btn" onclick="rejectRequest(${index})">Reject</button>
+                            <button class="onhold-btn" onclick="onHoldRequest(${index})">On Hold</button>
+                            <button class="followup-btn" onclick="followUpRequest(${index})">Follow-Up</button>
+                        </div>
+                    </div>
+                `;
+                pendingContainer.innerHTML += requestCard;
+            });
+        }
+
+        function displayApprovedRequests() { document.getElementById('approvedRequests').innerHTML = approvedRequests.map(request => `<div class="request-card"><h2>${request.name}</h2><p>${request.details}</p></div>`).join(''); }
+        function displayRejectedRequests() { document.getElementById('rejectedRequests').innerHTML = rejectedRequests.map(request => `<div class="request-card"><h2>${request.name}</h2><p>${request.details}</p></div>`).join(''); }
+        function displayOnHoldRequests() { document.getElementById('onHoldRequests').innerHTML = onHoldRequests.map(request => `<div class="request-card"><h2>${request.name}</h2><p>${request.details}</p></div>`).join(''); }
+        function displayFollowUpRequests() { document.getElementById('followUpRequests').innerHTML = followUpRequests.map(request => `<div class="request-card"><h2>${request.name}</h2><p>${request.details}</p></div>`).join(''); }
+
+        function approveRequest(index) { approvedRequests.push(pendingRequests.splice(index, 1)[0]); displayRequests(); }
+        function rejectRequest(index) { rejectedRequests.push(pendingRequests.splice(index, 1)[0]); displayRequests(); }
+        function onHoldRequest(index) { onHoldRequests.push(pendingRequests.splice(index, 1)[0]); displayRequests(); }
+        function followUpRequest(index) { followUpRequests.push(pendingRequests.splice(index, 1)[0]); displayRequests(); }
+
+        window.onload = displayRequests;
+    </script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help - Energy Supply Management</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ECEFF1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .content {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .top-line {
+            width: 100%;
+            height: 38px;
+            background-color: #0D253F;
+        }
+
+        header {
+            background-color: #1E3A8A;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 2rem;
+        }
+
+        nav {
+            background-color: #0D253F;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 8px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 15px;
+            border-radius: 5px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 100%;
+            height: 2px;
+            background-color: #FFD700;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #FFD700;
+        }
+
+        nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        nav a.active {
+            background-color: #1E3A8A;
+            color: #FFD700;
+            border-radius: 5px;
+            padding: 5px 15px;
+        }
+
+        .section {
+            background-color: #fff;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 900px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #1E3A8A;
+            margin-bottom: 20px;
+        }
+
+        .help-categories {
+            display: grid;
+            gap: 15px;
+        }
+
+        .help-item {
+            background-color: #FFD700;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .help-item:hover {
+            background-color: #FFB300;
+        }
+
+        .help-details {
+            display: none;
+            background-color: #fff;
+            border: 2px solid #FFD700;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 5px;
+        }
+
+        .help-item.active .help-details {
+            display: block;
+        }
+
+        .contact-support {
+    background-color: #FFFFFF; /* White Background */
+    color: #1E3A8A;           /* Dark Blue Text */
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 30px;
+    border: 2px solid #FFD700; /* Yellow Border for Emphasis */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light Shadow for Depth */
+}
+
+.contact-support p {
+    margin: 5px 0;
+    font-weight: 600;
+}
+
+
+
+        .footer {
+            text-align: center;
+            background-color: #0D253F;
+            color: #fff;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="top-line"></div>
+
+        <header>Energy Supply Management Platform</header>
+
+        <nav>
+            <a href="Homepage.html">Home</a>
+            <a href="AboutUs.html">About Us</a>
+            <a href="ContactUs.html">Contact Us</a>
+           </nav>
+
+        <section class="section">
+            <h1>Need Help?</h1>
+            <p>We’re here to assist you. Select a category below for detailed instructions or contact our support team directly.</p>
+
+            <div class="help-categories">
+                <div class="help-item" onclick="toggleHelp(this)">
+                    🔹 **How to Register as a Customer**
+                    <div class="help-details">
+                        1. Go to the **Customers** page.<br>
+                        2. Click on the **Register** button.<br>
+                        3. Fill in the required details and submit the form.<br>
+                        4. After verification, you'll receive confirmation via email.
+                    </div>
+                </div>
+
+                <div class="help-item" onclick="toggleHelp(this)">
+                    🔹 **How to Request Power Supply**
+                    <div class="help-details">
+                        1. Login to your **Customer Account**.<br>
+                        2. Navigate to the **Power Request** section.<br>
+                        3. Select your desired power plant and submit your request.<br>
+                        4. Track your request in real-time from the dashboard.
+                    </div>
+                </div>
+
+                <div class="help-item" onclick="toggleHelp(this)">
+                    🔹 **How to Track Power Supply Status**
+                    <div class="help-details">
+                        1. Log in to your **Customer Account**.<br>
+                        2. Go to the **My Requests** section.<br>
+                        3. Each request will display its **Status** (Pending, In Progress, or Delivered).<br>
+                        4. For detailed tracking, click on the respective request for updates.
+                    </div>
+                </div>
+
+                <div class="help-item" onclick="toggleHelp(this)">
+                    🔹 **How to Contact a Power Provider Directly**
+                    <div class="help-details">
+                        1. Go to the **Power Providers** page.<br>
+                        2. Select your preferred provider from the list.<br>
+                        3. Click on the **Contact** button to view their details and reach out directly.
+                    </div>
+                </div>
+
+                <div class="help-item" onclick="toggleHelp(this)">
+                    🔹 **How to Reset Your Password**
+                    <div class="help-details">
+                        1. Visit the **Login** page.<br>
+                        2. Click on **Forgot Password**.<br>
+                        3. Enter your registered email and follow the instructions provided.
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-support">
+                <h2>Contact Support</h2>
+                <p><strong>Email Support:</strong> support@energysupply.com</p>
+                <p><strong>Customer Support:</strong> +91 9876543210</p>
+                <p><strong>Technical Assistance:</strong> +91 8765432109</p>
+                <p><strong>Office Address:</strong> Energy Supply HQ, XYZ Tower, Pune, Maharashtra, India</p>
+            </div>
+            
+    </div>
+
+    <div class="footer">
+        © 2025 PyroGen Power Systems | Privacy | Terms of Use
+    </div>
+
+    <script>
+        function toggleHelp(element) {
+            element.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

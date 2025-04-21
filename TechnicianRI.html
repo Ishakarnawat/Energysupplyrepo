@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Technical Issues | Pyrogen Power Systems</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F3F4F6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .top-line { width: 100%; height: 38px; background-color: #0D253F; }
+        header {
+            background-color: #1E3A8A;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 2rem;
+        }
+        .navbar-container {
+            background-color: #0D253F;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 8px 0;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        nav a:hover { background-color: #87CEEB; }
+        nav a.active { background-color: #1E3A8A; color: #FFD700; }
+        .dashboard-container {
+            padding: 30px 20px;
+        }
+        .section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin-top: 20px;
+        }
+        .section-title {
+            font-weight: 600;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label { font-weight: 600; }
+        input[type="text"], input[type="date"], select, textarea, input[type="file"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #1E3A8A;
+            border-radius: 5px;
+        }
+        textarea { resize: none; height: 100px; }
+        input[type="submit"] {
+            background-color: #1E3A8A;
+            color: #FFD700;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0D253F;
+        }
+        .confirmation {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            display: none;
+        }
+        .footer-bottom {
+            text-align: center;
+            background-color: #0D253F;
+            color: #fff;
+            padding: 10px 0;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-line"></div>
+
+    <header>Report Technical Issues | Pyrogen Power Systems</header>
+
+    <div class="navbar-container">
+        <nav>
+            <a href="TechnicanDashboard.html">Dashboard</a>
+            <a href="TechnicianUP.html">Update Power Data</a>
+            <a href="ReportIssues.html" class="active">Report Issues</a>
+            <a href="TechnicianMMI.html">Manage Minor Fixes</a>
+            <a href="Homepage.html">Logout</a>
+        </nav>
+    </div>
+
+    <div class="dashboard-container">
+
+        <!-- Report Issues Section -->
+        <div class="section">
+            <div class="section-title">❗ Report a Technical Issue</div>
+
+            <form id="issueForm">
+                <label for="issueCategory">Issue Category:</label>
+                <select id="issueCategory" required>
+                    <option value="" disabled selected>Select Equipment</option>
+                    <option value="Transformer">Transformer</option>
+                    <option value="Capacitor Bank">Capacitor Bank</option>
+                    <option value="CT Transformer">CT Transformer</option>
+                    <option value="PT Transformer">PT Transformer</option>
+                    <option value="Switchgear">Switchgear</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="equipmentID">Equipment ID/Tag:</label>
+                <input type="text" id="equipmentID" required placeholder="e.g., TRF-105">
+
+                <label for="issueDescription">Detailed Issue Description:</label>
+                <textarea id="issueDescription" required placeholder="Describe the issue, cause (if known), and impact..."></textarea>
+
+                <label for="urgencyLevel">Urgency Level:</label>
+                <select id="urgencyLevel" required>
+                    <option value="" disabled selected>Select Urgency</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                    <option value="Critical">Critical</option>
+                </select>
+
+                <label for="detectionMethod">Issue Detection Method:</label>
+                <input type="text" id="detectionMethod" placeholder="e.g., Visual Inspection, Sensor Alert">
+
+                <label for="previousMaintenance">Previous Maintenance Date:</label>
+                <input type="date" id="previousMaintenance">
+
+                <label for="attachment">Attach Image/Document (Optional):</label>
+                <input type="file" id="attachment" accept=".jpg, .jpeg, .png, .pdf">
+
+                <input type="submit" value="Submit Issue">
+            </form>
+
+            <div class="confirmation" id="confirmationMsg">
+                ✅ Issue reported successfully!
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2025 Pyrogen Power Systems | Report Technical Issues
+    </div>
+
+    <script>
+        document.getElementById('issueForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Show confirmation message
+            document.getElementById('confirmationMsg').style.display = 'block';
+
+            // Hide confirmation after 3 seconds
+            setTimeout(() => {
+                document.getElementById('confirmationMsg').style.display = 'none';
+            }, 3000);
+
+            // Clear the form
+            document.getElementById('issueForm').reset();
+        });
+    </script>
+</body>
+</html>

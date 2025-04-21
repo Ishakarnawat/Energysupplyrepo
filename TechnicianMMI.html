@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipment Issues | Pyrogen Power Systems</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F3F4F6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .top-line { width: 100%; height: 38px; background-color: #0D253F; }
+        header {
+            background-color: #1E3A8A;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 2rem;
+        }
+        nav {
+            background-color: #0D253F;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 8px 0;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        nav a:hover { background-color: #87CEEB; }
+        nav a.active { background-color: #1E3A8A; color: #FFD700; }
+        .dashboard-container { padding: 30px 20px; }
+        .section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+        }
+        .section-title { font-weight: 600; font-size: 1.4rem; margin-bottom: 15px; text-align: center; }
+        .issue-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        .issue-card {
+            background: #E3F2FD;
+            padding: 15px;
+            border-left: 6px solid #1E3A8A;
+            border-radius: 10px;
+            text-align: left;
+        }
+        .urgent { border-left: 6px solid #FF0000; }
+        .issue-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .btn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #fff;
+            font-weight: 600;
+        }
+        .btn.fixed { background-color: #4CAF50; }
+        .btn.inspect { background-color: #1E90FF; }
+        .btn.view { background-color: #FFA500; }
+        .btn.assign { background-color: #673AB7; }
+        .btn.urgent { background-color: #FF0000; }
+        .footer-bottom { text-align: center; background-color: #0D253F; color: #fff; padding: 10px 0; margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <div class="top-line"></div>
+
+    <header>Equipment Issues | Pyrogen Power Systems</header>
+
+    <nav>
+        <a href="TechnicanDashboard.html">Dashboard</a>
+        <a href="TechnicianUP.html">Update Power Data</a>
+        <a href="TechnicianRI.html">Report Issues</a>
+        <a href="TechnicianMMI.html" class="active">Manage Minor Fixes</a>
+        <a href="Homepage.html">Logout</a>
+    </nav>
+
+    <div class="dashboard-container">
+
+        <div class="section">
+            <div class="section-title">🔧 Equipment Issues</div>
+            <div class="issue-grid" id="issueContainer"></div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">✅ Fixed Issues</div>
+            <div class="issue-grid" id="fixedIssues"></div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">🔍 Inspection Scheduled</div>
+            <div class="issue-grid" id="inspectionIssues"></div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">👨‍🔧 Assigned Technicians</div>
+            <div class="issue-grid" id="assignedTechnicians"></div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">🚨 Urgent Issues</div>
+            <div class="issue-grid" id="urgentIssues"></div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">📄 View Details</div>
+            <div class="issue-grid" id="viewDetails"></div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2025 Pyrogen Power Systems | Equipment Issues
+    </div>
+
+    <script>
+        let issues = [
+            { name: "CT Transformer", details: "Loose wiring detected." },
+            { name: "Capacitor Bank", details: "Overheating issue identified." },
+            { name: "Battery Bank", details: "Corroded terminal connectors." },
+            { name: "Busbar System", details: "Loose connections detected." }
+        ];
+
+        let fixedIssues = [];
+        let inspectionIssues = [];
+        let assignedTechnicians = [];
+        let urgentIssues = [];
+        let viewDetailsIssues = [];
+
+        function displayIssues() {
+            renderIssues('issueContainer', issues, true);
+            renderIssues('fixedIssues', fixedIssues);
+            renderIssues('inspectionIssues', inspectionIssues);
+            renderIssues('assignedTechnicians', assignedTechnicians);
+            renderIssues('urgentIssues', urgentIssues);
+            renderIssues('viewDetails', viewDetailsIssues);
+        }
+
+        function renderIssues(containerId, data, includeButtons = false) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = data.map((issue, index) => `
+                <div class="issue-card ${issue.urgent ? 'urgent' : ''}">
+                    <h2>${issue.name}</h2>
+                    <p>${issue.details}</p>
+                    ${includeButtons ? `
+                    <div class="issue-actions">
+                        <button class="btn fixed" onclick="markAsFixed(${index})">Fixed</button>
+                        <button class="btn inspect" onclick="inspectIssue(${index})">Inspect</button>
+                        <button class="btn view" onclick="moveToViewDetails(${index})">View</button>
+                        <button class="btn assign" onclick="assignTechnician(${index})">Assign Technician</button>
+                        <button class="btn urgent" onclick="markAsUrgent(${index})">Mark as Urgent</button>
+                    </div>
+                    ` : ''}
+                </div>
+            `).join('');
+        }
+
+        function moveIssue(source, target, index) {
+            target.push({ ...source.splice(index, 1)[0], buttons: false });
+            displayIssues();
+        }
+
+        function markAsFixed(index) { moveIssue(issues, fixedIssues, index); }
+        function inspectIssue(index) { moveIssue(issues, inspectionIssues, index); }
+        function assignTechnician(index) {
+            const technicianName = prompt(`Assign a technician for ${issues[index].name}:`);
+            if (technicianName) {
+                issues[index].details += ` (Assigned Technician: ${technicianName})`;
+                moveIssue(issues, assignedTechnicians, index);
+            }
+        }
+        function markAsUrgent(index) {
+            issues[index].urgent = true;
+            moveIssue(issues, urgentIssues, index);
+        }
+        function moveToViewDetails(index) { moveIssue(issues, viewDetailsIssues, index); }
+
+        window.onload = displayIssues;
+    </script>
+</body>
+</html>
